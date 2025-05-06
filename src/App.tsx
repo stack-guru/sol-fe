@@ -1,16 +1,30 @@
 import { useState } from 'react'
 import './App.css'
-import { SolanaProvider } from './SolanaProvider'
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui'
+import { useUsdvContract } from './useUsdv'
 
 function App() {
   // const [count, setCount] = useState(0)
+  const { callMint, callBurn } = useUsdvContract();
+
+  const handleMint = async () => {
+    // callMint()
+  }
+
+  const handleBurn = async () => {
+    callBurn()
+  }
 
   return (
-    <SolanaProvider>
+    <>
       <h1>Solana Wallet Connection</h1>
       <WalletMultiButton />
-    </SolanaProvider>
+
+      <div className='btn-group'>
+        <button onClick={() => handleMint()}>Mint</button>
+        <button onClick={() => handleBurn()}>Redeem</button>
+      </div>
+    </>
   )
 }
 
